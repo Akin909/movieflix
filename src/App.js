@@ -34,6 +34,7 @@ const store = createStore(
 );
 
 sagaMiddlware.run(fetchMoviesSaga);
+
 class App extends Component {
   render() {
     return (
