@@ -8,9 +8,7 @@ import {
 function recieveMovies(state = [], action) {
   switch (action.type) {
     case MOVIES_FETCH_SUCCEEDED:
-      return [ ...state,
-        ...action.movies,
-      ];
+      return [...state, ...action.movies];
     default:
       return state;
   }
