@@ -17,7 +17,7 @@ injectGlobal`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
   * {
       box-sizing: inherit;
