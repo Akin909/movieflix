@@ -10,7 +10,7 @@ const Banner = styled.iframe`
 
 const MovieBanner = ({ videos, poster_path, overview, title }) => {
   console.log('videos', videos);
-  const url = `http://www.youtube.com/embed/${videos[0] ? videos[0].key : ''}`;
+  const url = `https://www.youtube.com/embed/${videos[0] ? videos[0].key : ''}`;
   return (
     <Banner src={url}>
       {overview
