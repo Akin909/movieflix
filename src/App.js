@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { offline } from 'redux-offline';
+import offlineConfig from 'redux-offline/lib/defaults';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import reducer from './reducers/index';
 import MovieList from './components/MovieList';
@@ -26,12 +29,22 @@ injectGlobal`
 `;
 
 const sagaMiddlware = createSagaMiddleware();
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  reducer,
-  composeEnhancers(applyMiddleware(sagaMiddlware))
+// const store = createStore(
+//   reducer,
+// compose(applyMiddleware(sagaMiddlware), offline(offlineConfig))
+// composeEnhancers(applyMiddleware(sagaMiddlware), offline(offlineConfig))
+// );
+
+const enhancer = compose(
+  // <-- CHANGED
+  applyMiddleware(sagaMiddlware),
+  devToolsEnhancer(), // <-- CHANGED
+  offline(offlineConfig)
 );
+
+const store = createStore(reducer, enhancer);
 
 sagaMiddlware.run(fetchMoviesSaga);
 
