@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { offline } from 'redux-offline';
-import offlineConfig from 'redux-offline/lib/defaults';
+// import { offline } from 'redux-offline';
+// import offlineConfig from 'redux-offline/lib/defaults';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import reducer from './reducers/index';
@@ -13,6 +13,7 @@ import { MainTitle } from './styles/components';
 
 import { injectGlobal } from 'styled-components';
 
+//eslint-disable-next-line
 injectGlobal`
   body, html {
     margin: 0;
@@ -29,18 +30,11 @@ injectGlobal`
 `;
 
 const sagaMiddlware = createSagaMiddleware();
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-// const store = createStore(
-//   reducer,
-// compose(applyMiddleware(sagaMiddlware), offline(offlineConfig))
-// composeEnhancers(applyMiddleware(sagaMiddlware), offline(offlineConfig))
-// );
 
 const enhancer = compose(
   applyMiddleware(sagaMiddlware),
-  devToolsEnhancer(),
-  offline(offlineConfig)
+  devToolsEnhancer()
+  // offline(offlineConfig)
 );
 
 const store = createStore(reducer, enhancer);

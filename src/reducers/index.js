@@ -5,21 +5,20 @@ import {
 } from './../constants/index';
 
 // Actions live here
-function recieveMovies(state = { movies: [], trailers: [] }, action) {
+function receiveMovies(state = { movies: [], trailers: [] }, action) {
   switch (action.type) {
     case MOVIES_FETCH_SUCCEEDED:
-      const newState = {
+      return {
         ...state,
         movies: [...state.movies, ...action.movies],
-        trailers: [...state.trailers, ...action.trailers],
+        // trailers: [...state.trailers, ...action.trailers],
       };
-      return newState;
     default:
       return state;
   }
 }
 
-function recieveTmdbError(state = {}, action) {
+function receiveTmdbError(state = {}, action) {
   switch (action.type) {
     case MOVIES_FETCH_FAILED:
       return {
@@ -32,6 +31,6 @@ function recieveTmdbError(state = {}, action) {
 }
 
 export default combineReducers({
-  movies: recieveMovies,
-  error: recieveTmdbError,
+  movies: receiveMovies,
+  error: receiveTmdbError,
 });

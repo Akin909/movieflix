@@ -8,9 +8,9 @@ const Banner = styled.iframe`
   height: 30em;
 `;
 
-const MovieBanner = ({ trailers, poster_path, overview, title }) => {
-  console.log('trailers', trailers);
-  const url = `https://www.youtube.com/embed/${trailers[0] ? trailers[0].key : ''}`;
+const MovieBanner = ({ trailer, poster_path, overview, title }) => {
+  console.log('trailer', trailer);
+  const url = `https://www.youtube.com/embed/${trailer[0] ? trailer[0].key : ''}`;
   return (
     <Banner src={url}>
       {overview
