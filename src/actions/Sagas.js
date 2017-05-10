@@ -8,35 +8,41 @@ import {
 const endpoint =
   'https://api.themoviedb.org/3/discover/movie?api_key=d616297942d0c3077745cdf09cb85185';
 
-// function tmdbRequest(url) {
-//   let moviesObj = {};
-//   return axios.get(url).then(res => res.data.results).then(movies => {
-//     moviesObj.movies = movies;
-//     return axios
-//       .get(
-//         `https://api.themoviedb.org/3/movie/${movies[0].id}/videos?api_key=d616297942d0c3077745cdf09cb85185`
-//       )
-//       .then(res => {
-//         moviesObj.videos = res.data.results;
-//         return moviesObj;
-//       });
-//   });
-// }
-function youtubeTrailers(id, obj){
-  const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=d616297942d0c3077745cdf09cb85185&language=en-US`
-  axios.get(url).then(res => console.log('res', res);)
-}
 function tmdbRequest(url) {
   let moviesObj = {};
-  return axios.get(url).then(res => res.data.results).then(movies => moviesObj.movies = movies).then(movies => Promise.all());
-    
+  return axios.get(url).then(res => res.data.results).then(movies => {
+    moviesObj.movies = movies;
+    return axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${movies[0].id}/videos?api_key=d616297942d0c3077745cdf09cb85185`
+      )
+      .then(res => {
+        moviesObj.videos = res.data.results;
+        return moviesObj;
+      });
+  });
 }
-export function* fetchMovies() {
+function getApiData(endpoint) {
+  return axios.get(endpoint).then(res => res).then(json => {
+    return json.data.results;
+  });
+}
+
+function* fetchMovies() {
   try {
-    const movies = yield call(tmdbRequest, endpoint);
+    const movies = yield call(getApiData, endpoint);
+    const trailers = yield movies.map(movie =>
+      call(
+        getApiData,
+        `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=d616297942d0c3077745cdf09cb85185&language=en-US`
+      )
+    );
+    console.log('movies', movies);
+    console.log('trailers', trailers);
     yield put({
       type: MOVIES_FETCH_SUCCEEDED,
       movies,
+      trailers,
     });
   } catch (error) {
     yield put({
@@ -46,7 +52,7 @@ export function* fetchMovies() {
   }
 }
 
-function* fetchMoviesSaga(url) {
+function* fetchMoviesSaga() {
   yield takeLatest(FETCH_REQUESTED, fetchMovies);
 }
 

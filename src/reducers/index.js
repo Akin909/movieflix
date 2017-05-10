@@ -5,14 +5,15 @@ import {
 } from './../constants/index';
 
 // Actions live here
-function recieveMovies(state = { movies: [], videos: [] }, action) {
+function recieveMovies(state = { movies: [], trailers: [] }, action) {
   switch (action.type) {
     case MOVIES_FETCH_SUCCEEDED:
-      return {
+      const newState = {
         ...state,
-        movies: [...state.movies, ...action.movies.movies],
-        videos: [...state.videos, ...action.movies.videos],
+        movies: [...state.movies, ...action.movies],
+        trailers: [...state.trailers, ...action.trailers],
       };
+      return newState;
     default:
       return state;
   }

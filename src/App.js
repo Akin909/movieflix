@@ -38,9 +38,8 @@ const sagaMiddlware = createSagaMiddleware();
 // );
 
 const enhancer = compose(
-  // <-- CHANGED
   applyMiddleware(sagaMiddlware),
-  devToolsEnhancer(), // <-- CHANGED
+  devToolsEnhancer(),
   offline(offlineConfig)
 );
 

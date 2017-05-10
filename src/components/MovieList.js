@@ -38,19 +38,24 @@ class MovieList extends Component {
   };
 
   render() {
+    console.log('props', this.props);
     const { movies } = this.props.movies;
-    const { videos } = this.props.movies;
+    const { trailers } = this.props.movies;
     return (
       <MovieListContainer>
-        <Title>In Cinemas Now..</Title>
-        <MovieBanner {...movies[0]} videos={videos} />
-        <CardContainer>
-          {movies.length > 0
-            ? movies.map(movie => {
-                return <MovieCards key={uuid()} {...movie} />;
-              })
-            : <Loading>Loading...</Loading>}
-        </CardContainer>
+        {this.props.movies.length > 0
+          ? <div>
+              <Title>In Cinemas Now..</Title>
+              <MovieBanner {...movies[0]} videos={trailers} />
+              <CardContainer>
+                {movies.length > 0
+                  ? movies.map(movie => {
+                      return <MovieCards key={uuid()} {...movie} />;
+                    })
+                  : <Loading>Loading...</Loading>}
+              </CardContainer>
+            </div>
+          : 'Loading'}
       </MovieListContainer>
     );
   }
