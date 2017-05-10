@@ -31,21 +31,14 @@ class MovieList extends Component {
     this.props.beginFetch();
   }
 
-  tidyOrCount = (words, count) => {
-    const noOfWords = words.split(' ');
-    if (count) return noOfWords.length;
-    return noOfWords.slice(0, 50).join(' ') + '...';
-  };
-
   render() {
     const { movies } = this.props.movies;
-    console.log('props', this.props.movies);
     return (
       <MovieListContainer>
         {movies.length > 0
           ? <div>
               <Title>In Cinemas Now..</Title>
-              <MovieBanner {...movies[0]} trailer={movies[0].trailer} />
+              <MovieBanner {...movies[0]} trailer={movies[1].trailer} />
               <CardContainer>
                 {movies.map(movie => {
                   return <MovieCards key={uuid()} {...movie} />;

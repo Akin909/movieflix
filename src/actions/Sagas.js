@@ -46,11 +46,10 @@ function* fetchMovies() {
         movies
       )
     );
+      //TODO messy the sagas above return two similar objects
     yield put({
       type: MOVIES_FETCH_SUCCEEDED,
       movies,
-      //TODO messy the sagas above return to similar objects
-      // trailers,
     });
   } catch (error) {
     yield put({
