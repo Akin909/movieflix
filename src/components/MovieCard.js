@@ -53,14 +53,15 @@ const MovieCards = ({
   isPlaying,
   onClick,
 }) => {
+  const rightMoviePlaying = isPlaying.title === title;
   return (
     <InnerCardContainer>
-      {isPlaying.playing && isPlaying.title === title
+      {isPlaying.playing && rightMoviePlaying
         ? <CardIframe src={`https://www.youtube.com/embed/${trailer[0].key}`} />
         : <MovieCard
             onClick={onClick.bind(MovieCards, title)}
             hide={isPlaying.playing}
-            title={isPlaying.title === title}
+            title={rightMoviePlaying}
             url={poster_path}
           >
             <Blurb>
