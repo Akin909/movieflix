@@ -17,3 +17,10 @@ export const Loading = styled.div`
   background-color: white;
   box-shadow: 0 1px 1px grey;
 `;
+
+export const Iframe = styled.iframe`
+  width: 100%;
+  margin: 0;
+  height: 30em;
+  border: 0;
+`;

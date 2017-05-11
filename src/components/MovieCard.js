@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Title } from './../styles/components';
+import { Title, Iframe } from './../styles/components';
 
 export const MovieCard = styled.li`
   background-image: ${props => (props.url ? `url(${'https://image.tmdb.org/t/p/original/' + props.url})` : '')};
@@ -35,14 +35,16 @@ const Summary = styled.p`
     transform: translate(0, 0%)
   }
 `;
-const MovieCards = ({ trailer, title, overview, poster_path }) => (
+const MovieCards = ({ trailer, title, overview, poster_path, playing }) => (
   <MovieCard url={poster_path}>
-    <Blurb>
-      <Title>{title}</Title>
-      <Summary>
-        {overview}
-      </Summary>
-    </Blurb>
+    {playing
+      ? <Blurb>
+          <Title>{title}</Title>
+          <Summary>
+            {overview}
+          </Summary>
+        </Blurb>
+      : <Iframe />}
   </MovieCard>
 );
 

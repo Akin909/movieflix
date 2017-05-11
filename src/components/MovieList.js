@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 
-import { beginFetch } from './../actions/index';
+import { beginFetch, startPlaying } from './../actions/index';
 import MovieCards from './MovieCard';
 import MovieBanner from './Banner';
 
@@ -31,8 +31,9 @@ class MovieList extends Component {
     this.props.beginFetch();
   }
 
-  playTrailer = trailer => {
-    // console.log('trailer', trailer);
+  handleClick = movie => {
+    console.log('movie');
+    this.props.startPlaying(movie);
   };
 
   render() {
@@ -47,7 +48,7 @@ class MovieList extends Component {
                 {movies.map(movie => {
                   return (
                     <MovieCards
-                      onClick={this.playTrailer(movie.trailer)}
+                      onClick={this.handleClick}
                       key={uuid()}
                       {...movie}
                     />
@@ -67,4 +68,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { beginFetch })(MovieList);
+export default connect(mapStateToProps, { beginFetch, startPlaying })(
+  MovieList
+);
