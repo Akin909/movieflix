@@ -8,15 +8,18 @@ const Banner = styled.iframe`
   height: 30em;
 `;
 
-const MovieBanner = ({ trailer, poster_path, overview, title }) => {
-  const url = `https://www.youtube.com/embed/${trailer[0] ? trailer[0].key : ''}`;
+const MovieBanner = ({ movies }) => {
+  console.log('movies', movies);
+  const randomTrailer = Math.floor(Math.random() * movies.length);
+  console.log('movies', movies[randomTrailer].trailer);
+  const url = `https://www.youtube.com/embed/${movies[randomTrailer].trailer ? movies[randomTrailer].trailer.key : ''}`;
   return (
     <Banner src={url}>
-      {overview
+      {movies[randomTrailer].overview
         ? <Loading>Loading...</Loading>
         : <div>
-            <h1>{title}</h1>
-            <p>{overview}</p>
+            <h1>{movies[randomTrailer].title}</h1>
+            <p>{movies[randomTrailer].overview}</p>
           </div>}
     </Banner>
   );

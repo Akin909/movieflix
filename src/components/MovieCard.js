@@ -35,7 +35,7 @@ const Summary = styled.p`
     transform: translate(0, 0%)
   }
 `;
-const MovieCards = ({ title, overview, poster_path }) => (
+const MovieCards = ({ trailer, title, overview, poster_path }) => (
   <MovieCard url={poster_path}>
     <Blurb>
       <Title>{title}</Title>

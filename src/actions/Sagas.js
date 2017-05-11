@@ -22,15 +22,13 @@ const endpoint =
 //       });
 //   });
 // }
-function getApiData(endpoint, movies) {
+function getApiData(endpoint, movie) {
   return axios.get(endpoint).then(res => res).then(json => {
-    if (movies) {
-      json.data.results.forEach((trailer, idx) => {
-        if (json.data.id === movies[idx].id) {
-          movies[idx].trailer = trailer;
-        }
-      });
-      return movies;
+    if (movie) {
+      if (json.data.id === movie.id) {
+        movie.trailer = json.data.results;
+      }
+      return movie;
     }
     return json.data.results;
   });
@@ -39,17 +37,16 @@ function getApiData(endpoint, movies) {
 function* fetchMovies() {
   try {
     const movies = yield call(getApiData, endpoint);
-    const trailers = yield movies.map(movie =>
+    const moviesWithTrailers = yield movies.map(movie =>
       call(
         getApiData,
         `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=d616297942d0c3077745cdf09cb85185&language=en-US`,
-        movies
+        movie
       )
     );
-      //TODO messy the sagas above return two similar objects
     yield put({
       type: MOVIES_FETCH_SUCCEEDED,
-      movies,
+      moviesWithTrailers,
     });
   } catch (error) {
     yield put({

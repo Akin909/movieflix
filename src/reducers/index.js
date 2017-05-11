@@ -10,8 +10,7 @@ function receiveMovies(state = { movies: [], trailers: [] }, action) {
     case MOVIES_FETCH_SUCCEEDED:
       return {
         ...state,
-        movies: [...state.movies, ...action.movies],
-        // trailers: [...state.trailers, ...action.trailers],
+        movies: [...state.movies, ...action.moviesWithTrailers],
       };
     default:
       return state;

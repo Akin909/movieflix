@@ -31,6 +31,10 @@ class MovieList extends Component {
     this.props.beginFetch();
   }
 
+  playTrailer = trailer => {
+    // console.log('trailer', trailer);
+  };
+
   render() {
     const { movies } = this.props.movies;
     return (
@@ -38,10 +42,16 @@ class MovieList extends Component {
         {movies.length > 0
           ? <div>
               <Title>In Cinemas Now..</Title>
-              <MovieBanner {...movies[0]} trailer={movies[1].trailer} />
+              <MovieBanner movies={movies} />
               <CardContainer>
                 {movies.map(movie => {
-                  return <MovieCards key={uuid()} {...movie} />;
+                  return (
+                    <MovieCards
+                      onClick={this.playTrailer(movie.trailer)}
+                      key={uuid()}
+                      {...movie}
+                    />
+                  );
                 })}
               </CardContainer>
             </div>
