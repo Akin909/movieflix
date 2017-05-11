@@ -3,7 +3,6 @@ import { Loading, Iframe } from './../styles/components';
 
 const MovieBanner = ({ movies }) => {
   const randomTrailer = Math.floor(Math.random() * movies.length);
-  console.log('trailer', movies[randomTrailer].trailer[0]);
   const url = `https://www.youtube.com/embed/${movies[randomTrailer].trailer[0] ? movies[randomTrailer].trailer[0].key : ''}`;
   return (
     <Iframe src={url}>
