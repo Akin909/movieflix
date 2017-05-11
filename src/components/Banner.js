@@ -2,8 +2,10 @@ import React from 'react';
 import { Loading, Iframe } from './../styles/components';
 
 const MovieBanner = ({ movies }) => {
-  const randomTrailer = Math.floor(Math.random() * movies.length);
-  const url = `https://www.youtube.com/embed/${movies[randomTrailer].trailer[0] ? movies[randomTrailer].trailer[0].key : ''}`;
+  const randomIndex = array => Math.floor(Math.random() * array.length);
+  const randomMovie = randomIndex(movies);
+  const randomTrailer = randomIndex(movies[randomMovie].trailer);
+  const url = `https://www.youtube.com/embed/${movies[randomTrailer].trailer[randomTrailer] ? movies[randomTrailer].trailer[randomTrailer].key : ''}`;
   return (
     <Iframe src={url}>
       {movies[randomTrailer].overview

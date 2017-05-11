@@ -7,6 +7,7 @@ export const MovieCard = styled.li`
   background-repeat: no-repeat;
   background-size: 100%;
   padding: 0.5rem;
+  display: ${props => (props.hide && props.title ? 'none' : '')};
   margin: 0.5rem;
   height: 20em;
   background-color: #848380;
@@ -35,17 +36,42 @@ const Summary = styled.p`
     transform: translate(0, 0%)
   }
 `;
-const MovieCards = ({ trailer, title, overview, poster_path, playing }) => (
-  <MovieCard url={poster_path}>
-    {playing
-      ? <Blurb>
-          <Title>{title}</Title>
-          <Summary>
-            {overview}
-          </Summary>
-        </Blurb>
-      : <Iframe />}
-  </MovieCard>
-);
+
+const InnerCardContainer = styled.div`
+  height: 20em;
+`;
+
+const CardIframe = styled(Iframe)`
+height: 100%;
+`;
+
+const MovieCards = ({
+  trailer,
+  title,
+  overview,
+  poster_path,
+  isPlaying,
+  onClick,
+}) => {
+  return (
+    <InnerCardContainer>
+      {isPlaying.playing && isPlaying.title === title
+        ? <CardIframe src={`https://www.youtube.com/embed/${trailer[0].key}`} />
+        : <MovieCard
+            onClick={onClick.bind(MovieCards, title)}
+            hide={isPlaying.playing}
+            title={isPlaying.title === title}
+            url={poster_path}
+          >
+            <Blurb>
+              <Title>{title}</Title>
+              <Summary>
+                {overview}
+              </Summary>
+            </Blurb>
+          </MovieCard>}
+    </InnerCardContainer>
+  );
+};
 
 export default MovieCards;

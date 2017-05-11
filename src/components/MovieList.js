@@ -32,7 +32,6 @@ class MovieList extends Component {
   }
 
   handleClick = movie => {
-    console.log('movie');
     this.props.startPlaying(movie);
   };
 
@@ -48,6 +47,7 @@ class MovieList extends Component {
                 {movies.map(movie => {
                   return (
                     <MovieCards
+                      isPlaying={this.props.playing}
                       onClick={this.handleClick}
                       key={uuid()}
                       {...movie}
@@ -65,6 +65,7 @@ class MovieList extends Component {
 function mapStateToProps(state) {
   return {
     movies: state.movies,
+    playing: state.playing,
   };
 }
 

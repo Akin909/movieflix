@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   MOVIES_FETCH_SUCCEEDED,
   MOVIES_FETCH_FAILED,
+  START_PLAYING,
 } from './../constants/index';
 
 // Actions live here
@@ -29,7 +30,21 @@ function receiveTmdbError(state = {}, action) {
   }
 }
 
+function playTrailer(state = { playing: false, title: '' }, action) {
+  switch (action.type) {
+    case START_PLAYING:
+      return {
+        ...state,
+        playing: !state.playing,
+        title: action.movie,
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   movies: receiveMovies,
   error: receiveTmdbError,
+  playing: playTrailer,
 });
