@@ -6,7 +6,6 @@ export function beginFetch() {
 }
 
 export function startPlaying(movie) {
-  console.log('movie in action', movie);
   return {
     type: START_PLAYING,
     movie,
