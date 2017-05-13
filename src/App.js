@@ -31,6 +31,13 @@ injectGlobal`
       box-sizing: inherit;
       font-family: inherit;
    }
+   .login-leave {
+     opacity: 1;
+   }
+   .login-leave.login-leave-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+   }
 `;
 const graphqlEndpoint = `https://api.graph.cool/simple/v1/cj2ndkjm9qtge0175atea143k`;
 const sagaMiddlware = createSagaMiddleware();

@@ -1,5 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import uuid from 'uuid/v4';
+
 import styled from 'styled-components';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import loginIcon from './../../public/login-icon.png';
 import {
@@ -39,8 +43,11 @@ const LoginBlurb = styled(Blurb)`
   justify-content: center;
 `;
 
+const Transition = styled(CSSTransitionGroup)`
+  grid-area: form;
+`;
+
 const Login = props => {
-  console.log('props', props);
   return (
     <LoginContainer>
       <LoginCardContainer>
@@ -63,11 +70,22 @@ const Login = props => {
           </LoginBlurb>
         </LoginCard>
       </LoginCardContainer>
-      <LoginForm />
+      {!props.user.loggedIn &&
+        <Transition
+          transitionName="login"
+          transitionLeave={true}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
+          <LoginForm key={uuid()} />
+        </Transition>}
     </LoginContainer>
   );
 };
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
 
 // const FeedQuery = gql`query allUsers {
 //   allUsers(orderBy: createdAt_DESC){
@@ -76,4 +94,4 @@ const Login = props => {
 //     lastname
 //   }
 // }`;
-export default Login;
+export default connect(mapStateToProps)(Login);

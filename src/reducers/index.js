@@ -3,6 +3,7 @@ import {
   MOVIES_FETCH_SUCCEEDED,
   MOVIES_FETCH_FAILED,
   START_PLAYING,
+  LOGIN_USER,
 } from './../constants/index';
 
 // Actions live here
@@ -18,7 +19,7 @@ function moviesReducer(
     case MOVIES_FETCH_SUCCEEDED:
       return {
         ...state,
-        isFetching:false,
+        isFetching: false,
         movies: [...state.movies, ...action.moviesWithTrailers],
       };
     case START_PLAYING:
@@ -55,14 +56,22 @@ function receiveTmdbError(state = {}, action) {
   }
 }
 
-// function playTrailer(state = {}, action) {
-//   console.log('state', state);
-//   switch (action.type) {
-//       return state;
-//   }
-// }
+function loginReducer(state = { firstname: '', lastname: '' }, action) {
+  switch (action.type) {
+    case LOGIN_USER:
+      return {
+        ...state,
+        firstname: action.user.firstname,
+        lastname: action.user.lastname,
+        loggedIn: true,
+      };
+    default:
+      return state;
+  }
+}
 
 export default combineReducers({
   movies: moviesReducer,
   error: receiveTmdbError,
+  user: loginReducer,
 });

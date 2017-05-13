@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { MainTitle } from './../styles/components';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -31,12 +32,17 @@ const Nav = props => (
     <MainTitle>
       MovieFlix
     </MainTitle>
+    {props.user.loggedIn ? <span> Hi, {props.user.firstname}</span> : ''}
     <Links>
-      {/*<div>{props.user}</div> */}
       <StyledLink to="Login">Login</StyledLink>
       <StyledLink to="/">Home</StyledLink>
     </Links>
   </NavBar>
 );
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  };
+};
 
-export default Nav;
+export default connect(mapStateToProps)(Nav);
