@@ -15,6 +15,8 @@ const LoginContainer = styled(Container)`
 `;
 
 const LoginCard = styled(Card)`
+  width: 15rem;
+  height: 25rem;
 `;
 
 const LoginCardContainer = styled(CardContainer)`
