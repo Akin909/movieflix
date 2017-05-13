@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { injectGlobal } from 'styled-components';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 // import { offline } from 'redux-offline';
 // import offlineConfig from 'redux-offline/lib/defaults';
-import { devToolsEnhancer } from 'redux-devtools-extension';
 
+import fetchMoviesSaga from './actions/Sagas';
 import reducer from './reducers/index';
 import MovieList from './components/MovieList';
-import fetchMoviesSaga from './actions/Sagas';
-import { MainTitle } from './styles/components';
-
-import { injectGlobal } from 'styled-components';
+import Login from './components/Login';
+import Nav from './components/Nav';
 
 //eslint-disable-next-line
 injectGlobal`
@@ -45,10 +46,13 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <MainTitle>MovieFlix</MainTitle>
-          <MovieList />
-        </div>
+        <Router>
+          <div>
+            <Nav />
+            <Route exact path="/" component={MovieList} />
+            <Route path="/Login" component={Login} />
+          </div>
+        </Router>
       </Provider>
     );
   }

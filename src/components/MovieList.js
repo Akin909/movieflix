@@ -5,25 +5,18 @@ import uuid from 'uuid/v4';
 import { beginFetch, startPlaying } from './../actions/index';
 import MovieCards from './MovieCard';
 import MovieBanner from './Banner';
+import { Container } from './../styles/components';
 
 import styled from 'styled-components';
-import { Title, Loading } from './../styles/components';
+import { Title, Loading, CardContainer } from './../styles/components';
 
-const MovieListContainer = styled.div`
-  display: grid;
+const MovieListContainer = styled(Container)`
   color: white;
-  background-color:#141414;
 `;
 
-const CardContainer = styled.ul`
-  padding: 0;
-  margin: 0.5rem;
-  display: grid;
-  list-style-type: none;
+const MovieCardContainer = styled(CardContainer)`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  align-items: center;
-  grid-gap: 1em;
 `;
 
 class MovieList extends Component {
@@ -43,7 +36,7 @@ class MovieList extends Component {
           ? <div>
               <Title>In Cinemas Now..</Title>
               <MovieBanner movies={movies} />
-              <CardContainer>
+              <MovieCardContainer>
                 {movies.map(movie => {
                   return (
                     <MovieCards
@@ -54,7 +47,7 @@ class MovieList extends Component {
                     />
                   );
                 })}
-              </CardContainer>
+              </MovieCardContainer>
             </div>
           : <Loading>Loading...</Loading>}
       </MovieListContainer>

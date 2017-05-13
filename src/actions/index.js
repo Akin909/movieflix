@@ -9,5 +9,6 @@ export function startPlaying(movie) {
   return {
     type: START_PLAYING,
     movie,
+    playing: true,
   };
 }
