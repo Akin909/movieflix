@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import loginIcon from './../../public/login-icon.png';
 import {
@@ -11,9 +9,12 @@ import {
   Blurb,
   Button,
 } from './../styles/components';
+import LoginForm from './LoginForm';
 
 const LoginContainer = styled(Container)`
   min-height: 90vh;
+  grid-template-areas:"login login login"
+  "form form form";
 `;
 
 const LoginCard = styled(Card)`
@@ -22,7 +23,9 @@ const LoginCard = styled(Card)`
 `;
 
 const LoginCardContainer = styled(CardContainer)`
-  margin: 5rem;
+  margin-top: 1rem;
+  grid-area: login
+  grid-template-rows: 1fr;
 `;
 
 const LoginIcon = styled.img`
@@ -60,16 +63,17 @@ const Login = props => {
           </LoginBlurb>
         </LoginCard>
       </LoginCardContainer>
+      <LoginForm />
     </LoginContainer>
   );
 };
 
-const FeedQuery = gql`query allUsers {
-  allUsers(orderBy: createdAt_DESC){
-    id
-    firstname
-    lastname
-  }
-}`;
 
-export default graphql(FeedQuery)(Login);
+// const FeedQuery = gql`query allUsers {
+//   allUsers(orderBy: createdAt_DESC){
+//     id
+//     firstname
+//     lastname
+//   }
+// }`;
+export default Login;

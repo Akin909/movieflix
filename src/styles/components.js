@@ -75,3 +75,13 @@ export const Button = styled.button`
   box-shadow: 0 1px 1px grey;
   width: 50%;
 `;
+
+export const Input = styled.input`
+  border: none;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+  margin: 1rem 0rem;
+  width: 50%;
+  height: 2rem;
+  opacity: ${props => (props.loggedIn ? '0' : '1')};
+  transition: opacity 0.5s ease-in;
+`;

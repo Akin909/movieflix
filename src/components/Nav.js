@@ -32,6 +32,7 @@ const Nav = props => (
       MovieFlix
     </MainTitle>
     <Links>
+      {/*<div>{props.user}</div> */}
       <StyledLink to="Login">Login</StyledLink>
       <StyledLink to="/">Home</StyledLink>
     </Links>
