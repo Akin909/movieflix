@@ -1,0 +1,20 @@
+# projectId: "cj2ndkjm9qtge0175atea143k"
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  firstname: String!
+  id: ID! @isUnique
+  lastname: String!
+  updatedAt: DateTime!
+}

@@ -5,6 +5,9 @@ import createSagaMiddleware from 'redux-saga';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { injectGlobal } from 'styled-components';
 import { devToolsEnhancer } from 'redux-devtools-extension';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+
 // import { offline } from 'redux-offline';
 // import offlineConfig from 'redux-offline/lib/defaults';
 
@@ -16,7 +19,7 @@ import Nav from './components/Nav';
 
 //eslint-disable-next-line
 injectGlobal`
-  body, html {
+@import 'https://fonts.googleapis.com/css?family=Montserrat';  body, html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -29,7 +32,7 @@ injectGlobal`
       font-family: inherit;
    }
 `;
-
+const graphqlEndpoint = `https://api.graph.cool/simple/v1/cj2ndkjm9qtge0175atea143k`;
 const sagaMiddlware = createSagaMiddleware();
 
 const enhancer = compose(
@@ -38,6 +41,14 @@ const enhancer = compose(
   // offline(offlineConfig)
 );
 
+const networkInterface = createNetworkInterface({
+  uri: graphqlEndpoint,
+});
+
+const client = new ApolloClient({
+  networkInterface,
+});
+
 const store = createStore(reducer, enhancer);
 
 sagaMiddlware.run(fetchMoviesSaga);
@@ -45,15 +56,17 @@ sagaMiddlware.run(fetchMoviesSaga);
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div>
-            <Nav />
-            <Route exact path="/" component={MovieList} />
-            <Route path="/Login" component={Login} />
-          </div>
-        </Router>
-      </Provider>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <Router>
+            <div>
+              <Nav />
+              <Route exact path="/" component={MovieList} />
+              <Route path="/Login" component={Login} />
+            </div>
+          </Router>
+        </Provider>
+      </ApolloProvider>
     );
   }
 }

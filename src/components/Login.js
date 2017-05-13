@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import loginIcon from './../../public/login-icon.png';
 import {
@@ -34,29 +36,40 @@ const LoginBlurb = styled(Blurb)`
   justify-content: center;
 `;
 
-const Login = props => (
-  <LoginContainer>
-    <LoginCardContainer>
-      <LoginCard>
-        <LoginIcon alt="login icon" src={loginIcon} />
-        <LoginBlurb>
-          <Button>Login</Button>
-        </LoginBlurb>
-      </LoginCard>
-      <LoginCard>
-        <LoginIcon alt="login icon" src={loginIcon} />
-        <LoginBlurb>
-          <Button>Login</Button>
-        </LoginBlurb>
-      </LoginCard>
-      <LoginCard>
-        <LoginIcon alt="login icon" src={loginIcon} />
-        <LoginBlurb>
-          <Button>Login</Button>
-        </LoginBlurb>
-      </LoginCard>
-    </LoginCardContainer>
-  </LoginContainer>
-);
+const Login = props => {
+  console.log('props', props);
+  return (
+    <LoginContainer>
+      <LoginCardContainer>
+        <LoginCard>
+          <LoginIcon alt="login icon" src={loginIcon} />
+          <LoginBlurb>
+            <Button>Login</Button>
+          </LoginBlurb>
+        </LoginCard>
+        <LoginCard>
+          <LoginIcon alt="login icon" src={loginIcon} />
+          <LoginBlurb>
+            <Button>Login</Button>
+          </LoginBlurb>
+        </LoginCard>
+        <LoginCard>
+          <LoginIcon alt="login icon" src={loginIcon} />
+          <LoginBlurb>
+            <Button>Login</Button>
+          </LoginBlurb>
+        </LoginCard>
+      </LoginCardContainer>
+    </LoginContainer>
+  );
+};
 
-export default Login;
+const FeedQuery = gql`query allUsers {
+  allUsers(orderBy: createdAt_DESC){
+    id
+    firstname
+    lastname
+  }
+}`;
+
+export default graphql(FeedQuery)(Login);
