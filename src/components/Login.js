@@ -15,7 +15,6 @@ const LoginContainer = styled(Container)`
 `;
 
 const LoginCard = styled(Card)`
-  
 `;
 
 const LoginCardContainer = styled(CardContainer)`
@@ -28,7 +27,9 @@ const LoginIcon = styled.img`
 `;
 
 const LoginBlurb = styled(Blurb)`
-  height: 40%;
+  height: 30%;
+  padding: 0.4rem;
+  justify-content: center;
 `;
 
 const Login = props => (

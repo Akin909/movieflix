@@ -28,7 +28,6 @@ export const Blurb = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin: 0.3rem;
   padding: 0.3rem;
   background: hsla(0, 0%, 0%, 0.6);
@@ -50,6 +49,8 @@ export const Title = styled(MainTitle)`
   color: white;
   text-shadow: 0 1px 1px black,
                 0 1.4px 1.4px black;
+  text-align: center;
+  padding-left: 0.4rem;
 `;
 
 export const Loading = styled.div`

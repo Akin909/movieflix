@@ -15,7 +15,7 @@ const MovieListContainer = styled(Container)`
 `;
 
 const MovieCardContainer = styled(CardContainer)`
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, 15rem);
   grid-template-rows: 1fr 1fr 1fr;
 `;
 
