@@ -22,7 +22,10 @@ function moviesReducer(
     case START_PLAYING:
       const newMoviesState = state.movies.map(movie => {
         if (movie.title !== action.movie) {
-          return movie;
+          return {
+            ...movie,
+            playing: !action.playing,
+          };
         }
         return {
           ...movie,
