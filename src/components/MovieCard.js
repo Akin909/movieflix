@@ -62,9 +62,10 @@ const MovieCards = ({
             key={uuid()}
             allowFullScreen
             autoplay
-            controls={'false'}
+            controls={'0'}
             preload
-            src={`https://www.youtube.com/embed/${trailer[0].key}`}
+            autobuffer
+            src={`https://www.youtube.com/embed/${trailer[0].key}?modestbranding=1`}
           />
         : <MovieCard hide={playing} title={playing} url={poster_path}>
             <PlayButton onClick={onClick.bind(MovieCards, title)}>►</PlayButton>

@@ -27,26 +27,30 @@ const LoginIcon = styled.img`
   max-width: 100%;
 `;
 
+const LoginBlurb = styled(Blurb)`
+  height: 40%;
+`;
+
 const Login = props => (
   <LoginContainer>
     <LoginCardContainer>
       <LoginCard>
         <LoginIcon alt="login icon" src={loginIcon} />
-        <Blurb>
+        <LoginBlurb>
           <Button>Login</Button>
-        </Blurb>
+        </LoginBlurb>
       </LoginCard>
       <LoginCard>
         <LoginIcon alt="login icon" src={loginIcon} />
-        <Blurb>
+        <LoginBlurb>
           <Button>Login</Button>
-        </Blurb>
+        </LoginBlurb>
       </LoginCard>
       <LoginCard>
         <LoginIcon alt="login icon" src={loginIcon} />
-        <Blurb>
+        <LoginBlurb>
           <Button>Login</Button>
-        </Blurb>
+        </LoginBlurb>
       </LoginCard>
     </LoginCardContainer>
   </LoginContainer>

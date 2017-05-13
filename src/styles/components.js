@@ -18,7 +18,7 @@ export const Card = styled.li`
   margin: 0.5rem;
   height: 20em;
   background-color: #848380;
-  box-shadow: 1px 1px 0px white;
+  box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   &:hover {
     
@@ -28,6 +28,7 @@ export const Blurb = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 0.3rem;
   padding: 0.3rem;
   background: hsla(0, 0%, 0%, 0.6);
@@ -52,8 +53,13 @@ export const Title = styled(MainTitle)`
 `;
 
 export const Loading = styled.div`
-  background-color: white;
   box-shadow: 0 1px 1px grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  height: 100vh;
 `;
 
 export const Iframe = styled.iframe`

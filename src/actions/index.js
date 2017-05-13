@@ -2,6 +2,7 @@ import { FETCH_REQUESTED, START_PLAYING } from './../constants/index';
 export function beginFetch() {
   return {
     type: FETCH_REQUESTED,
+    // isFetching: true,
   };
 }
 

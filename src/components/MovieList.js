@@ -32,7 +32,7 @@ class MovieList extends Component {
     const { movies } = this.props.movies;
     return (
       <MovieListContainer>
-        {movies.length > 0
+        {!this.props.isFetching
           ? <div>
               <Title>In Cinemas Now..</Title>
               <MovieBanner movies={movies} />
@@ -58,7 +58,7 @@ class MovieList extends Component {
 function mapStateToProps(state) {
   return {
     movies: state.movies,
-    playing: state.playing,
+    isFetching: state.movies.isFetching,
   };
 }
 

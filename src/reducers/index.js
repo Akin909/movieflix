@@ -10,6 +10,7 @@ function moviesReducer(
   state = {
     movies: [],
     trailers: [],
+    isFetching: true,
   },
   action
 ) {
@@ -17,6 +18,7 @@ function moviesReducer(
     case MOVIES_FETCH_SUCCEEDED:
       return {
         ...state,
+        isFetching:false,
         movies: [...state.movies, ...action.moviesWithTrailers],
       };
     case START_PLAYING:
