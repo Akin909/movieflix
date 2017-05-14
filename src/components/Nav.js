@@ -24,6 +24,12 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const GreetUser = styled.span`
+  color: white;
+  font-weight: 800;
+  padding-right: 1rem;
+`;
+
 const Image = styled.img`
   width: 2rem;
   height:2rem;
@@ -72,14 +78,14 @@ class Nav extends Component {
           MovieFlix
         </MainTitle>
         <Links>
+          {this.props.user.loggedIn
+            ? <GreetUser> Hi, {this.props.user.firstname}</GreetUser>
+            : ''}
           {this.props.showSearch.searchStatus &&
             <SearchBar {...this.state} handleChange={this.handleChange} />}
           <Image src={searchIcon} onClick={this.props.toggleSearch} />
           <StyledLink to="Login">Login</StyledLink>
           <StyledLink to="/">Home</StyledLink>
-          {this.props.user.loggedIn
-            ? <span> Hi, {this.props.user.firstname}</span>
-            : ''}
         </Links>
       </NavBar>
     );

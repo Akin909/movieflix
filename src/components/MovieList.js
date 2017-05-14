@@ -16,7 +16,7 @@ const MovieListContainer = styled(Container)`
 
 const MovieCardContainer = styled(CardContainer)`
   grid-template-columns: repeat(auto-fill, 15rem);
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 1fr)
 `;
 
 class MovieList extends Component {
@@ -34,8 +34,8 @@ class MovieList extends Component {
       <MovieListContainer>
         {!this.props.isFetching
           ? <div>
-              <Title>In Cinemas Now..</Title>
               <MovieBanner movies={movies} />
+              <Title>In Cinemas Now..</Title>
               <MovieCardContainer>
                 {movies.map(movie => {
                   return (
