@@ -46,6 +46,7 @@ class LoginForm extends Component {
   render() {
     return (
       <FormContainer onSubmit={this.handleSubmit}>
+        <h1>Sign Up Here!</h1>
         <Input
           name="firstname"
           placeholder="Firstname"
@@ -76,10 +77,6 @@ class LoginForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {};
-}
-
 const addMutation = gql`
   mutation addUser($firstname: String!, $lastname: String!){
     createUser(firstname: $firstname, lastname: $lastname){
@@ -98,5 +95,5 @@ export default compose(
         }),
     }),
   }),
-  connect(mapStateToProps, { loginUser })
+  connect(null, { loginUser })
 )(LoginForm);

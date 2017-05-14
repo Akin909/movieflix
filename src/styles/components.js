@@ -43,15 +43,16 @@ export const CardContainer = styled.ul`
   grid-template-rows: 1fr 1fr 1fr;
   justify-content: space-evenly;
   align-items: center;
-  grid-gap: 1em;
+  grid-gap:5em 1em;
 `;
 
-export const Title = styled(MainTitle)`
+export const Title = styled.h1`
   color: white;
-  text-shadow: 0 1px 1px black,
-                0 1.4px 1.4px black;
   text-align: center;
+  text-shadow: 0 1px 1px black,
+  0 1.4px 1.4px black;
   padding-left: 0.4rem;
+  width: 100%;
 `;
 
 export const Loading = styled.div`

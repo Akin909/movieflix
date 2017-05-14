@@ -9,7 +9,7 @@ export const MovieCard = styled(Card)`
   background-size: 100%;
   display: ${props => (props.hide && props.title ? 'none' : '')};
   width: 15rem;
-  transition: width 0.3s linear, position 0.3s linear;
+  transition: all 0.3s linear;
   &:hover {
     transition-delay:1s;
     width: 30rem;
@@ -64,6 +64,14 @@ export const MovieTitle = styled(MainTitle)`
   margin-bottom: 1rem;
 `;
 
+const CompanyLogo = styled.h3`
+  color: #E50914;
+  margin: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 20;
+`;
+
 const MovieCards = ({
   trailer,
   title,
@@ -78,13 +86,14 @@ const MovieCards = ({
         ? <CardVideo
             key={uuid()}
             allowFullScreen
-            autoplay
+            autoPlay
             controls={'0'}
             preload
             autobuffer
             src={`https://www.youtube.com/embed/${trailer[0].key}?modestbranding=1`}
           />
         : <MovieCard hide={playing} title={playing} url={poster_path}>
+            <CompanyLogo>Movieflix</CompanyLogo>
             <PlayButton onClick={onClick.bind(MovieCards, title)}>
               ►
             </PlayButton>

@@ -56,38 +56,31 @@ const FirstChild = props => {
   return childrenArray[0] || null;
 };
 
+const userTypes = ['Guest', 'Child', 'Returning User'];
 const Login = props => {
   return (
     <LoginContainer>
       <LoginCardContainer>
-        <LoginCard>
-          <LoginIcon alt="login icon" src={loginIcon} />
-          <LoginBlurb>
-            <Button>Login</Button>
-          </LoginBlurb>
-        </LoginCard>
-        <LoginCard>
-          <LoginIcon alt="login icon" src={loginIcon} />
-          <LoginBlurb>
-            <Button>Login</Button>
-          </LoginBlurb>
-        </LoginCard>
-        <LoginCard>
-          <LoginIcon alt="login icon" src={loginIcon} />
-          <LoginBlurb>
-            <Button>Login</Button>
-          </LoginBlurb>
-        </LoginCard>
+        {userTypes.map(userType => (
+          <LoginCard key={uuid()}>
+            {userType}
+            <LoginIcon alt="login icon" src={loginIcon} />
+            <LoginBlurb>
+              <Button>Login</Button>
+            </LoginBlurb>
+          </LoginCard>
+        ))}
       </LoginCardContainer>
       <Transition
         component={FirstChild}
         transitionName="login"
         transitionLeave={true}
         transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
+        transitionLeaveTimeout={500}
       >
         {!props.user.loggedIn && <LoginForm key={uuid()} />}
       </Transition>
+      {setTimeout(() => <Redirect to="/" />, 2000)}
     </LoginContainer>
   );
 };
@@ -96,19 +89,6 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-// {
-//   setTimeout(
-//     () => (
-//       <Redirect
-//         to={{
-//           pathname: '/',
-//           state: { from: props.location },
-//         }}
-//       />
-//     ),
-//     2000
-//   );
-// }
 // const FeedQuery = gql`query allUsers {
 //   allUsers(orderBy: createdAt_DESC){
 //     id
