@@ -59,9 +59,11 @@ export const MovieTitle = styled(MainTitle)`
   flex-direction: column;
   text-shadow: 0 1px 1px black,
                 0 1.4px 1.4px black;
-  height: 50%;
   margin: 0;
   margin-bottom: 1rem;
+  height 15%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const CompanyLogo = styled.h3`
