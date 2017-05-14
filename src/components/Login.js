@@ -51,6 +51,11 @@ const Transition = styled(CSSTransitionGroup)`
   grid-area: form;
 `;
 
+const FirstChild = props => {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+};
+
 const Login = props => {
   return (
     <LoginContainer>
@@ -74,27 +79,15 @@ const Login = props => {
           </LoginBlurb>
         </LoginCard>
       </LoginCardContainer>
-      {!props.user.loggedIn &&
-        <Transition
-          transitionName="login"
-          transitionLeave={true}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          <LoginForm key={uuid()}>
-            {setTimeout(
-              () => (
-                <Redirect
-                  to={{
-                    pathname: '/',
-                    state: { from: props.location },
-                  }}
-                />
-              ),
-              2000
-            )}
-          </LoginForm>
-        </Transition>}
+      <Transition
+        component={FirstChild}
+        transitionName="login"
+        transitionLeave={true}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+      >
+        {!props.user.loggedIn && <LoginForm key={uuid()} />}
+      </Transition>
     </LoginContainer>
   );
 };
@@ -103,6 +96,19 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
+// {
+//   setTimeout(
+//     () => (
+//       <Redirect
+//         to={{
+//           pathname: '/',
+//           state: { from: props.location },
+//         }}
+//       />
+//     ),
+//     2000
+//   );
+// }
 // const FeedQuery = gql`query allUsers {
 //   allUsers(orderBy: createdAt_DESC){
 //     id

@@ -87,4 +87,7 @@ export const Input = styled.input`
   margin: 1rem 0rem;
   width: 50%;
   height: 2rem;
+  padding: 0.5rem;
+  text-align: center;
+  outline: 0;
 `;

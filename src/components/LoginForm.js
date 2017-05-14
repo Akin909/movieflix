@@ -10,8 +10,7 @@ import { Input, Button } from './../styles/components';
 
 const FormContainer = styled.form`
   grid-area: form;
-  justify-content: center;
-  align-content: center;
+  justify-content: space-evenly;
   display:flex;
   flex-direction: column;
   align-items: center;
