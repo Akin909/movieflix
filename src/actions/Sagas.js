@@ -8,20 +8,6 @@ import {
 const endpoint =
   'https://api.themoviedb.org/3/discover/movie?api_key=d616297942d0c3077745cdf09cb85185';
 
-// function tmdbRequest(url) {
-//   let moviesObj = {};
-//   return axios.get(url).then(res => res.data.results).then(movies => {
-//     moviesObj.movies = movies;
-//     return axios
-//       .get(
-//         `https://api.themoviedb.org/3/movie/${movies[0].id}/videos?api_key=d616297942d0c3077745cdf09cb85185`
-//       )
-//       .then(res => {
-//         moviesObj.videos = res.data.results;
-//         return moviesObj;
-//       });
-//   });
-// }
 function getApiData(endpoint, movie) {
   return axios.get(endpoint).then(res => res).then(json => {
     if (movie) {

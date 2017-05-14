@@ -4,9 +4,9 @@ import {
   MOVIES_FETCH_FAILED,
   START_PLAYING,
   LOGIN_USER,
+  TOGGLE_SEARCH,
 } from './../constants/index';
 
-// Actions live here
 function moviesReducer(
   state = {
     movies: [],
@@ -70,8 +70,21 @@ function loginReducer(state = { firstname: '', lastname: '' }, action) {
   }
 }
 
+function searchBarReducer(state = { searchStatus: false }, action) {
+  switch (action.type) {
+    case TOGGLE_SEARCH:
+      return {
+        ...state,
+        searchStatus: !state.searchStatus,
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   movies: moviesReducer,
   error: receiveTmdbError,
   user: loginReducer,
+  search: searchBarReducer,
 });

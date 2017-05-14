@@ -1,4 +1,9 @@
-import { FETCH_REQUESTED, LOGIN_USER, START_PLAYING } from './../constants/index';
+import {
+  FETCH_REQUESTED,
+  LOGIN_USER,
+  START_PLAYING,
+  TOGGLE_SEARCH,
+} from './../constants/index';
 export function beginFetch() {
   return {
     type: FETCH_REQUESTED,
@@ -21,5 +26,11 @@ export function loginUser(firstname, lastname) {
       lastname,
       loggedIn: true,
     },
+  };
+}
+
+export function toggleSearch() {
+  return {
+    type: TOGGLE_SEARCH,
   };
 }
