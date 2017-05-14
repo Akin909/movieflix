@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 import uuid from 'uuid/v4';
 
 import styled from 'styled-components';
@@ -19,6 +21,8 @@ const LoginContainer = styled(Container)`
   min-height: 90vh;
   grid-template-areas:"login login login"
   "form form form";
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const LoginCard = styled(Card)`
@@ -77,7 +81,19 @@ const Login = props => {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}
         >
-          <LoginForm key={uuid()} />
+          <LoginForm key={uuid()}>
+            {setTimeout(
+              () => (
+                <Redirect
+                  to={{
+                    pathname: '/',
+                    state: { from: props.location },
+                  }}
+                />
+              ),
+              2000
+            )}
+          </LoginForm>
         </Transition>}
     </LoginContainer>
   );

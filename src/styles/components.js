@@ -41,6 +41,7 @@ export const CardContainer = styled.ul`
   list-style-type: none;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  justify-content: space-evenly;
   align-items: center;
   grid-gap: 1em;
 `;
@@ -60,12 +61,16 @@ export const Loading = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  height: 100vh;
+  height: 90vh;
 `;
 
 export const Iframe = styled.iframe`
-  width: 100%;
-  margin: 0;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
   height: 30em;
   border: 0;
 `;
@@ -82,6 +87,4 @@ export const Input = styled.input`
   margin: 1rem 0rem;
   width: 50%;
   height: 2rem;
-  opacity: ${props => (props.loggedIn ? '0' : '1')};
-  transition: opacity 0.5s ease-in;
 `;

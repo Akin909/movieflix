@@ -8,6 +8,14 @@ export const MovieCard = styled(Card)`
   background-repeat: no-repeat;
   background-size: 100%;
   display: ${props => (props.hide && props.title ? 'none' : '')};
+  width: 15rem;
+  transition: width 0.3s linear, position 0.3s linear;
+  &:hover {
+    transition-delay:1s;
+    width: 30rem;
+    position: absolute;
+    z-index: 100;
+  }
 `;
 const Summary = styled.p`
   height: 50%;
