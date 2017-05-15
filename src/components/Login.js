@@ -18,7 +18,7 @@ import {
 import LoginForm from './LoginForm';
 
 const LoginContainer = styled(Container)`
-  min-height: 90vh;
+  min-height: 100%;
   grid-template-areas:"login login login"
   "form form form";
   justify-content: space-evenly;
