@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import uuid from 'uuid/v4';
 
 import styled from 'styled-components';
 
@@ -47,30 +48,17 @@ class LoginForm extends Component {
     return (
       <FormContainer onSubmit={this.handleSubmit}>
         <h1>Sign Up Here!</h1>
-        <Input
-          name="firstname"
-          placeholder="Firstname"
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.firstname}
-          required
-        />
-        <Input
-          name="lastname"
-          placeholder="lastname"
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.lastname}
-          required
-        />
-        <Input
-          name="password"
-          placeholder="Password"
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.password}
-          required
-        />
+        {Object.keys(this.state).map(field => (
+          <Input
+            key={uuid()}
+            name={field}
+            placeholder={field}
+            type="text"
+            onChange={this.handleChange}
+            value={this.state[field]}
+            required
+          />
+        ))}
         <Submit type="submit" value="Submit">Submit</Submit>
       </FormContainer>
     );
