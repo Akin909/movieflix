@@ -9,6 +9,8 @@ const FrameContainer = styled.div`
 `;
 
 const MovieBanner = ({ movies }) => {
+  //TODO refactor this component as various elements make no sense... e.g is the trailer shown what I intended, the Loading spinner is in the wrong
+  //Section of the ternary... FIX
   const randomIndex = array => Math.floor(Math.random() * array.length);
   const randomMovie = randomIndex(movies);
   const randomTrailer = randomIndex(movies[randomMovie].trailer);
