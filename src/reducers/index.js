@@ -10,7 +10,6 @@ import {
 function moviesReducer(
   state = {
     movies: [],
-    trailers: [],
     isFetching: true,
   },
   action
